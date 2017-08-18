@@ -1,14 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/LMS/js/Applicationvalidation.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
+
+
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 <link rel="stylesheet" href="css/application.css">
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- Latest compiled and minified CSS -->
 <!-- Latest compiled and minified CSS -->
@@ -25,26 +33,23 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/LMS/js/Applicationvalidation.js"></script>
+
 <!-- <script src="/LMS/js/Date.js"></script> -->
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.js">
-	
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.js"> 
 </script>
-<script src="/LMS/js/ajax.js"></script>
-<script src="/LMS/js/onload.js"></script>
-
-
-
+-->
+<style type="text/css">
+.error{
+color:red;
+}
+</style>
 
 </head>
 
 <title>Insert title here</title>
 <body class="">
-	<form name="applicationform" id="applicationform"
-		action="AppController" method="POST">
+	<form name="applicationform" id="applicationform" action="AppController"
+		method="POST">
 		<div class="container-fluid ">
 
 			<div class="row">
@@ -70,26 +75,23 @@
 					<div class="row">
 						<div class="form-inline col-lg-6">
 							<label for="eid" class="size">Emloyee Id</label><input
-								type="text" class="form-control" id="eid" name="eid"
-								value="${session.empid}" readonly>
+								type="text" class="form-control" id="eid" name="eid">
 						</div>
 						<div class="form-inline col-lg-6">
 							<label for="dept" class="size">Department</label><input
-								type="text" class="form-control" id="dept" name="dept"
-								value="${session.department}" readonly>
+								type="text" class="form-control" id="dept" name="dept">
 						</div>
 					</div>
 					<p></p>
 					<div class="row">
 						<div class="form-inline col-lg-6">
 							<label for="fname" class="size">Emloyee Name</label><input
-								type="text" disabled class="fname" id="fname" name="fname"
-								value="${session.fname} ${session.lname}">
+								type="text" class="fname" id="fname" name="fname">
 						</div>
 						<div class="form-inline col-lg-6 ">
 							<label for="designation" class="size">Designation</label><input
 								type="text" class="form-control" id="designation"
-								name="designation" value="${session.designation}" readonly>
+								name="designation">
 						</div>
 					</div>
 					<p></p>
@@ -103,13 +105,13 @@
 						<div class="form-inline col-lg-6">
 							<label for="type" class="size">Type of leave<sup
 								class="redcolor">*</sup></label> <span> <select name="type"
-								class="drop-down " id="type">
-									<option value="">--Select--</option>
-									<option value="10">Sick-Leave</option>
-									<option value="11">Annual Leave</option>
-									<option value="12">Comp-off</option>
-									<!--  <option value="4">Marriage-leave</option>
-									<option value="5">Paternity-Leave</option>-->
+								class="drop-down " id="type" >
+									<option value="0">--Select--</option>
+									<option value="1">Sick-Leave</option>
+									<option value="2">Annual Leave</option>
+									<option value="3">Comp-off</option>
+									<option value="4">Marriage-leave</option>
+									<option value="5">Paternity-Leave</option>
 							</select>
 							</span>
 						</div>
@@ -123,17 +125,16 @@
 					<div class="row">
 						<div class="form-inline col-lg-6">
 							<label for="startdate" class="size">Start Date<sup
-								class="redcolor">*</sup></label> <input type="text"
-								class="form-control datepicker " id="DateFrom" name="startdate"
-								value='<c:out value="${app.startdate}"></c:out>'> <span><a
-								href="" name="datepicker"
+								class="redcolor">*</sup></label> <input type="text" 
+								class="form-control datepicker " id="DateFrom" 
+								name="startdate" value='<c:out value="${app.startdate}"></c:out>'> <span><a href=""
+								name="datepicker"
 								class="glyphicon glyphicon-calendar datepicker"></a></span>
 						</div>
 						<div class="form-inline col-lg-6">
 							<label for="enddate" class="size">End Date<sup
 								class="redcolor">*</sup></label> <input type="text" id="DateTo"
-								class="form-control datepicker" name="enddate"
-								value='<c:out value="${app.enddate}"></c:out>'> <span><a
+								class="form-control datepicker" name="enddate" value='<c:out value="${app.enddate}"></c:out>'> <span><a
 								href="" name="datepicker"
 								class="glyphicon glyphicon-calendar datepicker"></a></span>
 						</div>
@@ -142,13 +143,12 @@
 					<p></p>
 					<div class="row">
 						<div class="form-inline col-lg-6">
-							<label for="workingdays" class="size">Working days</label> <input
-								type="text" class="form-control" id="nights" name="workingdays"
-								value="" readonly="readonly">
+							<label for="workingdays" class="size">Working days</label> 
+								<input type="text" class="form-control"  id="nights" name="workingdays"  value="" readonly="readonly">
 
 						</div>
 
-
+						
 					</div>
 					<p></p>
 					<div class="row">
@@ -176,14 +176,9 @@
 					</div>
 					<div class="row">
 						<div class="form-inline col-lg-6">
-							<label for="approver1" class="size">Approver 1<sup
-								class="redcolor">*</sup></label> <span> <select name="approver1"
-								class="drop-down ">
-									<c:forEach items="${appr}" var="appr">
-										<option value="${appr.approverid}">${appr.aname}</option>
-									</c:forEach>
+							<label for="approver1" class="size">Approver 1<sup class="redcolor">*</sup></label>
+							<span> <select name="approver1" id="approver1" class="drop-down " value='<c:out value="${app.approver1}"></c:out>'>
 									<option value="">--Select--</option>
-
 									<option value="1">Ashfaque</option>
 									<option value="2">Aniruddh</option>
 									<option value="3">Rajat</option>
@@ -196,15 +191,9 @@
 
 
 						<div class="form-inline col-lg-6">
-							<label for="approver2" class="size">Approver 2</label> <span>
-								<select name="approver2" class="drop-down ">
-									<c:forEach items="${appr}" var="appr">
-										<option value="${appr.approverid}">${appr.aname}</option>
-									</c:forEach>
+							<label for="approver2" class="size">Approver 2</label> <span> <select
+								name="approver2" id="approver2" class="drop-down " value='<c:out value="${app.approver2}"></c:out>'>
 									<option value="">--Select--</option>
-									<c:forEach items="${appr}" var="appr">
-										<option value="${appr.approverid}">${appr.aname}</option>
-									</c:forEach>
 									<option value="1">Ashfaque</option>
 									<option value="2">Aniruddh</option>
 									<option value="3">Rajat</option>
@@ -214,7 +203,7 @@
 							</span>
 
 						</div>
-
+						
 
 
 
@@ -223,7 +212,7 @@
 					<div class="row">
 						<div class="form-inline col-lg-6">
 							<label for="reason" class="size">CC</label>
-							<textarea class="form-control" id="fname" name="reason"></textarea>
+							<textarea class="form-control" ></textarea>
 
 						</div>
 					</div>
