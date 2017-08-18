@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.bodybg {
+	background-image: url("/LMS/images/bluegradient.jpg");
+}
+
+.error {
+	color: red;
+}
+
+.well {
+	background-color: #555555 !important;
+	border-color: #555555 !important;
+	background-image: :url("/LMS/images/bluegradient.jpg") !important;
+} 
+.whitetext{
+	color:white;
+}

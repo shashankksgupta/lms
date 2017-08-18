@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+.redcolor
+{
+	color:red;
+}
+.size
+{
+	width:200px;
+}
+.size1
+{
+	width:300px;
+}
+.padding
+{
+	padding-top:50px;
+}
+.center
+{
+	text:center;
+}
