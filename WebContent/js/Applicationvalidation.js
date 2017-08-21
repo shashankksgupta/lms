@@ -27,6 +27,12 @@ $(document).ready(function() {
 			});
 		}
 	});
+	$("#hdate").datepicker({
+		changeYear : true,
+
+		dateFormat : 'dd-mm-yy',
+
+	});
 
 //	$(function() {
 //		$('#DateFrom').datepicker({
@@ -107,53 +113,54 @@ $('#DateTo').blur(function() {
 			nights.val(days);
 		}
 	});
- $('#applicationform').validate({
- rules: {
- startdate: {
- required: true
-	 
- },
- enddate: {
- required: true
-
- },
- applicationdate: {
- required: true
-
- },
- reason: {
- required: true
-
- },
-	
- approver: {
- required: true
-
- },
- type: {
- required: "type required"
- }
- } ,
-	 
- messages: {
-type: {
-required:"type of leave required"},
- startdate: {
- required: "startdate required"
- },
- enddate: {
- required: "enddate required"
- },
- comment: {
- required: "Reason required"
- },
- approver1:{
- required: "Please select your Approver1"
- },
- approver2:{
-	 required: "Please select your Approver1"
-	 }
- }
- 
 });
-});
+
+// $("#apply").validate({
+// rules: {
+// startdate: {
+// required: true
+//	 
+// },
+// enddate: {
+// required: true
+//
+// },
+// applicationdate: {
+// required: true
+//
+// },
+// reason: {
+// required: true
+//
+// },
+//	
+// approver: {
+// required: true
+//
+// },
+// type: {
+// required: "type required"
+// }
+// } ,
+//	 
+// messages: {
+// startdate: {
+// required: "startdate required"
+// },
+// enddate: {
+// required: "enddate required"
+// },
+// applicationdate: {
+// required: "application Date required"
+// },
+// reason: {
+// required: "Reason required"
+// },
+// approver:{
+// required: "Username required"
+// },
+// type: {
+// required: "type of leave required"
+// }
+// }
+

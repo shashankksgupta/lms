@@ -5,10 +5,6 @@
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/LMS/js/Applicationvalidation.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"> </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -29,15 +25,17 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/LMS/js/Applicationvalidation.js"></script>
 <!-- <script src="/LMS/js/Date.js"></script> -->
 
-</* script
+<script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.js">
 	
-</script> */
+</script>
 <script src="/LMS/js/ajax.js"></script>
 <script src="/LMS/js/onload.js"></script>
+<link rel="stylesheet" href="css/registration.css">
 <style>
 .error{
 	color:red;
@@ -49,7 +47,7 @@
 </head>
 
 <title>Insert title here</title>
-<body class="">
+<body class="bodybg">
 	<form name="applicationform" id="applicationform"
 		action="AppController" method="POST">
 		<div class="container-fluid ">
@@ -57,7 +55,7 @@
 			<div class="row">
 				<div class="col-lg-4 col-lg-offset-2">
 					<p>
-					<h1>Application Form</h1>
+					<h1 class="whitetext">Application Form</h1>
 					</p>
 
 				</div>
@@ -90,7 +88,7 @@
 					<div class="row">
 						<div class="form-inline col-lg-6">
 							<label for="fname" class="size">Emloyee Name</label><input
-								type="text" disabled class="fname" id="fname" name="fname"
+								type="text" disabled class="fname form-control" id="fname" name="fname"
 								value="${session.fname} ${session.lname}">
 						</div>
 						<div class="form-inline col-lg-6 ">
@@ -110,7 +108,7 @@
 						<div class="form-inline col-lg-6">
 							<label for="type" class="size">Type of leave<sup
 								class="redcolor">*</sup></label> <span> <select name="type"
-								class="drop-down " id="type">
+								class="drop-down form-control" id="type">
 									<option value="0">--Select--</option>
 									<option value="10">Sick-Leave</option>
 									<option value="11">Annual Leave</option>
@@ -185,7 +183,7 @@
 						<div class="form-inline col-lg-6">
 							<label for="approver1" class="size">Approver 1<sup
 								class="redcolor">*</sup></label> <span> <select name="approver1"
-								class="drop-down ">
+								class="drop-down form-control">
 									<c:forEach items="${appr}" var="appr">
 										<option value="${appr.approverid}">${appr.aname}</option>
 									</c:forEach>
@@ -198,7 +196,7 @@
 
 						<div class="form-inline col-lg-6">
 							<label for="approver2" class="size">Approver 2</label> <span>
-								<select name="approver2" class="drop-down ">
+								<select name="approver2" class="drop-down form-control">
 									<c:forEach items="${appr}" var="appr">
 										<option value="${appr.approverid}">${appr.aname}</option>
 									</c:forEach>
@@ -220,7 +218,7 @@
 
 						</div>
 					</div>
-					<div class="col-lg-offset-3">
+					<div class="col-lg-offset-4">
 						<a href="" class="glyphicon glyphicon-user"></a> <span><a
 							href="" class="glyphicon glyphicon-list-alt"></a></span>
 					</div>
