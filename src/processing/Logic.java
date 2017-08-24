@@ -102,7 +102,8 @@ public class Logic extends HttpServlet {
 			emp.setEmpid(empid);
 			dao.updateEmployee(emp);
 			// dao.addLocation(emp);
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("empindex.jsp");
+			empid=0;
 
 		} else {
 			String toAddress=request.getParameter("email");
@@ -140,10 +141,9 @@ public class Logic extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			response.sendRedirect("empindex.jsp");
 			
-			if (i > 0) {
-				response.sendRedirect("empindex.jsp");
-			}
+			
 		}
 
 	}

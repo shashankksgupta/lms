@@ -66,6 +66,7 @@ public class LocationLogic extends HttpServlet {
 			
 			 lob.setLocationid(locationId);
 	            dao.updateLocation(lob);
+	            locationId=0;
 //	          
 	            response.sendRedirect("listlocation.jsp");
         }

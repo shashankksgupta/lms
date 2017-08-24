@@ -64,6 +64,7 @@ public class RolesLogic extends HttpServlet {
 		if(empid>0) {		
 			rob.setEmpid(empid);
 			rdao.updateRole(rob);
+			empid=0;
 			
 		}
 		//response.sendRedirect("rolesRedirect.jsp");

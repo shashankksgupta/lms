@@ -116,8 +116,8 @@
 								<td><c:out value="${rob.isapprover}" /></td>
 								<td><a
 									href="RolesLogic?action=edit&empid=<c:out value="${rob.empid}"/>">Update</a></td>
-								<td><a
-									href="RolesLogic?action=delete&empid=<c:out value="${rob.empid}"/>">Delete</a></td>
+<!-- 								<td><a -->
+<%-- 									href="RolesLogic?action=delete&empid=<c:out value="${rob.empid}"/>">Delete</a></td> --%>
 							</tr>
 						</c:forEach>
 					</tbody>

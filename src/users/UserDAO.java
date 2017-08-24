@@ -66,10 +66,11 @@ public class UserDAO {
 
 	public void deleteEmployee(int empid) {
 		try {
-			ps = con.prepareStatement("delete from lms.employeemaster where empid=?");
+			CallableStatement cs=con.prepareCall("{call lms.deleteemployee(?)}");
+			//ps = con.prepareStatement("delete from lms.employeemaster where empid=?");
 			// Parameters start with 1
-			ps.setInt(1, empid);
-			ps.executeUpdate();
+			cs.setInt(1, empid);
+			cs.execute();
 			userLog.info("Delete Successfull from lms.employeemaster");
 		} catch (SQLException e) {
 			userLog.error("error while deleting "+e);

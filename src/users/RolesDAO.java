@@ -86,7 +86,7 @@ public class RolesDAO {
 	public RolesBean getRoleById(int empId) {
 		RolesBean rob = new RolesBean();
 		try {
-			ps = con.prepareStatement("select * from lms.rolesmaster where empid=?");
+			ps = con.prepareStatement("select * from lms.rolesmaster inner join lms.employeemaster on lms.rolesmaster.empid = lms.employeemaster.empid where lms.rolesmaster.empid=?");
 			ps.setInt(1, empId);
 			ResultSet rs = ps.executeQuery();
 
@@ -95,6 +95,7 @@ public class RolesDAO {
 				rob.setEmpid(rs.getInt("empid"));
 				rob.setIsadmin(rs.getString("isadmin"));
 				rob.setIsapprover(rs.getString("isapprover"));
+				rob.setFname(rs.getString("fname"));
 
 			}
 

@@ -40,8 +40,7 @@ $(document)
 						$('#sickconsumed').prop('disabled', false);
 						$('#wfhalloted').prop('disabled', false);
 						$('#wfhconsumed').prop('disabled', false);
-
-						console.log(isadmin);
+						$('#btnLeavesMasterSubmit').prop('disabled',false);
 						// $('#annualbalance').disabled=false;
 					}
 //					$('#annualalloted')

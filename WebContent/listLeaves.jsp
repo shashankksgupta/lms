@@ -121,8 +121,8 @@
 								<td><a
 								
 									href="LeavesMasterLogic?isadmin=true&action=edit&empid=<c:out value="${lmb.empid}"/>">Update</a></td>
-								<td><a
-									href="LeavesMasterLogic?action=delete&empid=<c:out value="${lmb.empid}"/>">Delete</a></td>
+<!-- 								<td><a -->
+<%-- 									href="LeavesMasterLogic?action=delete&empid=<c:out value="${lmb.empid}"/>">Delete</a></td> --%>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -1,6 +1,7 @@
 package processing;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,9 +38,11 @@ public class LeavesMasterLogic extends HttpServlet {
 			request.setAttribute("lmb", dao.getAllLeaves()); 
 			lml.info("Attributes set for listing");
 		} else if (action.equalsIgnoreCase("edit")) {
+			
 			forward = "/LeaveMaster.jsp";
 			empid = Integer.parseInt(request.getParameter("empid"));
 			LeavesMasterBean lmbs = dao.getLeavesByEmpId(empid);
+			request.setAttribute("lmbs",lmbs);
 			lml.info("Attributes set for Editing");
 		} else if (action.equalsIgnoreCase("delete")) {
 			empid=Integer.parseInt(request.getParameter("empid"));
@@ -50,7 +53,7 @@ public class LeavesMasterLogic extends HttpServlet {
 //			forward = "/listEmp.jsp";
 //			request.setAttribute("emp", dao.getAllEmployees());
 		} else {
-			forward = "/Registration.jsp";
+			
 		}
 
 		RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -73,7 +76,7 @@ public class LeavesMasterLogic extends HttpServlet {
 			dao.updateLeavesMaster(lmb);
 			// dao.addLocation(emp);
 			response.sendRedirect("listlocation.jsp");
-			
+			empid=0;
 
 		} else {
 			int i = dao.addLeaveMaster(lmb);

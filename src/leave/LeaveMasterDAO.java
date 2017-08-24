@@ -102,19 +102,19 @@ public class LeaveMasterDAO {
     }
 	public void updateLeavesMaster(LeavesMasterBean lmb) {
         try {
-            ps = con.prepareStatement("update lsm.leavesmaster set annualalloted=?,annualconsumed=?,sickalloted=?,sickconsumed=?,wfhalloted=?,wfhconsumed=? where empid=?");
+            ps = con.prepareStatement("update lms.leavesmaster set annualalloted=?,annualconsumed=?,sickalloted=?,sickconsumed=?,wfhalloted=?,wfhconsumed=? where empid=?");
             ps.setInt(1, lmb.getAnnualalloted());
             ps.setInt(2, lmb.getAnnualconsumed());
             ps.setInt(3, lmb.getSickalloted());
             ps.setInt(4, lmb.getSickconsumed());
             ps.setInt(5, lmb.getWfhalloted());
             ps.setInt(6, lmb.getWfhconsumed());
-            ps.setInt(6, lmb.getEmpid());
+            ps.setInt(7, lmb.getEmpid());
    
            ps.executeUpdate();
            leaveMasterLog.info("Update successfull into lms.leavesmaster");
         } catch (SQLException e) {
-        	leaveMasterLog.error("Error while Updating");
+        	leaveMasterLog.error("Error while Updating" +e);
             
         }
     }
