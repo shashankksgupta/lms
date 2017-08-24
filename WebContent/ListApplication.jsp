@@ -45,7 +45,7 @@
                     <td><c:out value="${app.ename}" /></td>
                     <td><c:out value="${app.startdate}" /></td>
                     <td><c:out value="${app.enddate}" /></td>
-                    <td><c:out value="${app.typeofleave}" /></td>
+                    <td ><c:out value="${app.typeofleave}" /></td>
                     <td><c:out value="${app.applicabledays}" /></td>
                     <td><c:out value="${app.approver1name}" /></td>
                     <td><c:out value="${app.approver2name}" /></td>

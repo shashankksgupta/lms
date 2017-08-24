@@ -88,7 +88,7 @@
 					<div class="row">
 						<div class="form-inline col-lg-6">
 							<label for="fname" class="size">Emloyee Name</label><input
-								type="text" disabled class="fname form-control" id="fname" name="fname"
+								type="text" readonly class="fname form-control" id="fname" name="fname"
 								value="${session.fname} ${session.lname}">
 						</div>
 						<div class="form-inline col-lg-6 ">

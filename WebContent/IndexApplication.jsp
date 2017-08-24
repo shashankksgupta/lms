@@ -18,7 +18,7 @@
 </head>
 <body>
 <form>
-<jsp:forward page="/AppController?action=list" />
+<jsp:forward page="/ApproveLeaveController?action=list" />
 </form>
 </body>
 </html>

@@ -1,9 +1,21 @@
 package com.employeebean;
 
 public class EmployeeBean {
-String fname,mname,lname,address,email,username,password,designation,mobile1,mobile2,enumber,location,department;
+String fname,mname,lname,address,email,username,password,designation,mobile1,mobile2,enumber,location,department,isadmin,isapprover;
 int approver1,approver2,approver3,departid,locationid,empid;
 
+public String getIsadmin() {
+	return isadmin;
+}
+public void setIsadmin(String isadmin) {
+	this.isadmin = isadmin;
+}
+public String getIsapprover() {
+	return isapprover;
+}
+public void setIsapprover(String isapprover) {
+	this.isapprover = isapprover;
+}
 public int getEmpid() {
 	return empid;
 }

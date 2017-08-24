@@ -1,5 +1,6 @@
 package lms;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,13 +24,14 @@ public class CrudDao {
 
 	public int addApplication(AppModel mod,int eid) {
 		int i = 0;
+		Boolean status=false;
 		// String insertQuery = "INSERT INTO
 		// lms.applicationmaster(typeid,startdate,enddate,comment,appprover1id,approver2id)
 		// VALUES
 		// ("+mod.getType()+",'"+mod.getStartdate()+"','"+mod.getEnddate()+"','"+mod.getComment()+"','"+mod.getApprover1()+"','"+mod.getApprover2()+"')";
-		String insertQuery = "INSERT INTO lms.applicationmaster(empid,typeid,startdate,enddate,numberofdays,applieddate,comment,approver1id,approver2id) VALUES ('" + mod.getEmpid() + "',"
+		String insertQuery = "INSERT INTO lms.applicationmaster(empid,typeid,startdate,enddate,numberofdays,applieddate,comment,approver1id,approver2id,status) VALUES ('" + mod.getEmpid() + "',"
 				+ mod.getType() + ",'" + mod.getStartdate() + "','" + mod.getEnddate() + "','" + mod.getApplicabledays()
-				+ "',now(),'" + mod.getComment() + "','" + mod.getApprover1() + "','" + mod.getApprover2() + "')";
+				+ "',now(),'" + mod.getComment() + "','" + mod.getApprover1() + "','" + mod.getApprover2() + "','"+status+"')";
 
 		// System.out.println(insertQuery);
 		try {
@@ -180,5 +182,77 @@ public class CrudDao {
 		}
 		return email;
 	}
+
+	public List<AppModel> getAllApplicationsByAid(int approverid) {
+		List<AppModel> applications = new ArrayList<AppModel>();
+		String query = "select appid,(select fname as ename from lms.employeemaster where lms.employeemaster.empid=lms.applicationmaster.empid),startdate,enddate,numberofdays,(select fname as approver1 from lms.employeemaster where lms.employeemaster.empid=lms.applicationmaster.approver1id),(select fname as approver2 from lms.employeemaster where lms.employeemaster.empid=lms.applicationmaster.approver2id),status,comment,applieddate,(select leavetype from lms.leavestypemaster where lms.applicationmaster.typeid=lms.leavestypemaster.leavetypeid),leaveid from lms.applicationmaster where (lms.applicationmaster.approver1id = ? or lms.applicationmaster.approver2id = ?) And lms.applicationmaster.status=false ORDER BY appid";
+		try {
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setInt(1, approverid);
+			stmt.setInt(2,approverid);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				AppModel application = new AppModel();
+
+				application.setAppid(rs.getInt("appid"));
+				
+				application.setEname(rs.getString("ename"));
+				application.setStartdate(rs.getString("startdate"));
+				application.setEnddate(rs.getString("enddate"));
+				application.setApplicabledays(rs.getInt("numberofdays"));
+				application.setApprover1name(rs.getString("approver1"));
+				application.setApprover2name(rs.getString("approver2"));
+				application.setStatus(rs.getBoolean("status"));
+				application.setComment(rs.getString("comment"));
+				application.setApplieddate(rs.getString("applieddate"));
+				application.setTypeofleave(rs.getString("leavetype"));
+				application.setLeaveid(rs.getInt("leaveid"));
+				applications.add(application);
+				testlog.info(" fetched all applications");
+			}
+
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			testlog.error("error in fetching all applications");
+		}
+		return applications;
+		
+		
+	}
+	public void approvebyid(int appid,int nod,int typeid) {
+		
+		try {
+			CallableStatement cstm=conn.prepareCall("{call lms.approveleave(?,?,?)}");
+			cstm.setInt(1,appid);
+			cstm.setInt(2, typeid);
+			cstm.setInt(3, nod);
+			cstm.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	public List<Integer> getLeaveDetails(int appid){
+		List<Integer> type=new ArrayList<Integer>();
+		String query="Select numberofdays,typeid from lms.applicationmaster where appid=?";
+		try {
+			PreparedStatement ps=conn.prepareStatement(query);
+			ps.setInt(1, appid);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()) {
+				type.add((rs.getInt("numberofdays")));
+				type.add((rs.getInt("typeid")));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return type;
+		
+		
+	}
+
 
 }

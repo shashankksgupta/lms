@@ -84,10 +84,12 @@ public class AppController extends HttpServlet {
 		} 
 		else if(action.equals("nothing")){
 			List<ApproverModel> approverlist = new ArrayList<ApproverModel>();
-			testid=18;
+			HttpSession session=request.getSession();
+			String name=String.valueOf(session.getAttribute("empid"));
+			
+			testid=Integer.parseInt(name);
 			forward = "/Application.jsp";
-			EmployeeBean embs = udao.getEmpById(testid);
-			HttpSession session = request.getSession();
+			EmployeeBean embs = udao.getEmpById(testid);			
 			session.setAttribute("session", embs);
 			approverlist=adao.getApproverByColumn(testid);
 			session.setAttribute("appr", approverlist);		

@@ -70,6 +70,8 @@ $(document)
 					var empsearch = getParameterByName('search');
 					
 					
+					
+					
 //					var action = getParameterByName('locationid');
 					
 //					$.ajax({
@@ -109,7 +111,7 @@ $(document)
 							type : 'POST',
 							data : {
 								locationname : locationname,
-								locationaddress : locationaddress,
+								locationaddress : locationaddress
 
 							},
 							success : function(data) {
@@ -120,6 +122,7 @@ $(document)
 						});
 
 					});
+					
 					$('#btnSubmitleave').click(function() {
 						var leavetype = $('#leavetype').val();
 						var allocateddays = $('#allocateddays').val();

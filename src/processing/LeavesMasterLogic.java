@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -31,7 +32,13 @@ public class LeavesMasterLogic extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String forward = "";
+		String forward = "LeaveMaster.jsp";
+			HttpSession session=request.getSession();
+			String eid=String.valueOf(session.getAttribute("empid"));
+			empid=Integer.parseInt(eid);
+			LeavesMasterBean leave = dao.getLeavesByEmpId(empid);
+			request.setAttribute("lmbs",leave);
+			lml.info("Attributes set for Viewing");
 		String action = request.getParameter("action");
 		if (action.equalsIgnoreCase("list")) {
 			forward = "/listLeaves.jsp";
@@ -54,7 +61,8 @@ public class LeavesMasterLogic extends HttpServlet {
 //			request.setAttribute("emp", dao.getAllEmployees());
 		} else {
 			
-		}
+		} 
+			
 
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
