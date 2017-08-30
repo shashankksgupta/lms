@@ -1,6 +1,7 @@
 package processing;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,17 +28,28 @@ LoginDAO ldao;
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out=response.getWriter();
 		EmployeeBean emb=new EmployeeBean();
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
 		
 		emb=ldao.doLogin(username, password);
+		
 		HttpSession session=request.getSession();
 		int empid=emb.getEmpid();
 		System.out.println(empid);
-		session.setAttribute("empid", empid);
-		RequestDispatcher view = request.getRequestDispatcher("Registration.jsp");
-		view.forward(request, response);
+		if(empid>0) {
+			session.setAttribute("empid", empid);
+			RequestDispatcher view = request.getRequestDispatcher("Registration.jsp");
+			view.forward(request, response);
+		}
+		else {
+		response.setContentType("text/html");
+			out.println("<script>alert(\"<input type='email' id='smtpemail' name='smtpemail'/></br><input type='password' id='smtppass' name='smtppass'/>\")</script>");
+			//RequestDispatcher view = request.getRequestDispatcher("ErrorPage.jsp");
+//			/view.forward(request, response);
+		}
+		
 		
 	
 	}

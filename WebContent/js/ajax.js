@@ -146,6 +146,30 @@ $(document)
 						});
 
 					});
+					$('#btnLogin').click(function() {
+						
+						var leavetype = $('#leavetype').val();
+						var allocateddays = $('#allocateddays').val();
+
+						$.ajax({
+							url : 'LeaveLogic',
+							type : 'POST',
+							data : {
+								leavetype : leavetype,
+								allocateddays : allocateddays
+
+							},
+							success : function(data) {
+								if (data == "success") {
+									
+								}
+							},
+							error : function(data) {
+								error(data);
+							}
+						});
+
+					});
 //					$('#btnSearch').click(function() {
 //						var empsearch = $('#empsearch').val();
 ////						$('#listemp td td:not(:contains('+ empsearch +'))').each(function(){ 

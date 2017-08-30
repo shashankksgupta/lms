@@ -89,9 +89,11 @@ public class AppController extends HttpServlet {
 			
 			testid=Integer.parseInt(name);
 			forward = "/Application.jsp";
-			EmployeeBean embs = udao.getEmpById(testid);			
+			EmployeeBean embs = udao.getEmpById(testid);	
+			
 			session.setAttribute("session", embs);
 			approverlist=adao.getApproverByColumn(testid);
+			//request.setAttribute("appr", approverlist);
 			session.setAttribute("appr", approverlist);		
 			//request.setAttribute("emp", embs);
 		}else {
@@ -100,20 +102,7 @@ public class AppController extends HttpServlet {
 
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);
-		// Return in the format required by jTable plugin
-		// JSONROOT.put("Result","OK");
-		// JSONROOT.put("Records", applicationlist);
-		// Convert Java Object to Json
-		// String jsonArray = gson.toJson(JSONROOT);
-		// response.getWriter().print(jsonArray);
-		// System.out.println(jsonArray);
-		// // } catch (Exception ex) {
-		// JSONROOT.put("Result", "ERROR");
-		// JSONROOT.put("Message", ex.getMessage());
-		// String error = gson.toJson(JSONROOT);
-		// response.getWriter().print(error);
-		//
-		// }
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -145,12 +134,14 @@ public class AppController extends HttpServlet {
 			response.sendRedirect("IndexApplication.jsp");		
 		}
 		else {
+			PrintWriter out=response.getWriter();
 			String port="587";
 			String subject="Leave Application by "+name;
 			String message="Hello,\n I "+name+" would like to apply for leave from "+request.getParameter("startdate")+" to "+request.getParameter("enddate")+" \n Please do the needful";
 			String host = "smtp.gmail.com";
-			String user = "lms.atidanmumbai@gmail.com";
-			String pass = "Atidan@123";
+			String user="lms.atidanmumbai.com";
+			String pass="Atidan@123";
+		
 	
 			String approver1email=cruddao.getEmailbyId(Approver1);
 			String approver2email=cruddao.getEmailbyId(Approver2);
@@ -160,8 +151,11 @@ public class AppController extends HttpServlet {
 			if (i > 0) {
 //		     String suc = "success";
 //		     response.getWriter().write(suc);
+				
 try {
-					sm.sendEmail(host, port, user, pass, approver1email, subject, message);
+			
+	
+	sm.sendEmail(host, port, user, pass, approver1email, subject, message);
 					sm.sendEmail(host, port, user, pass, approver2email, subject, message);
 				} catch (AddressException e) {
 					// TODO Auto-generated catch block
@@ -170,7 +164,7 @@ try {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				PrintWriter out = response.getWriter();  
+				
 				response.setContentType("text/html");  
 				out.println("<script type=\"text/javascript\">");  
 				out.println("alert('Leave Appliction added successfully');");  

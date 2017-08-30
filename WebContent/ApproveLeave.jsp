@@ -124,7 +124,7 @@
                     <td id="leavetype"><input type="hidden" id="leavetype" value="${app.typeofleave} "><c:out value="${app.typeofleave}" /></td>
                     <td id="applicabledays"><input type="hidden" id="leavetype" value="${app.typeofleave} "><c:out value="${app.applicabledays}" /></td>
                     <td><c:out value="${app.approver1name}" /></td>
-                    <td><c:out value="${app.approver2name}" /></td>
+                    <td><c:out value="${app.approver2name}" /></td>	
                     <td><c:out value="${app.status}" /></td>
                     <td><c:out value="${app.comment}" /></td>
                     <td><c:out value="${app.applieddate}" /></td>

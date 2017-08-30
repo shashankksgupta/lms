@@ -26,8 +26,8 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/LMS/js/Applicationvalidation.js"></script>
-<!-- <script src="/LMS/js/Date.js"></script> -->
+<!-- <script src="/LMS/js/Applicationvalidation.js"></script> -->
+<script src="/LMS/js/Date.js"></script>
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.6/jquery.validate.unobtrusive.js">

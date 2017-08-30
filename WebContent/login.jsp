@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="/LMS/js/ajax.js"></script>
+<script src="/LMS/js/jquery-ui.js"></script>
+<link href="/LMS/css/jquery-ui.css">
 
 </head>
 <body>
@@ -35,7 +37,7 @@
 	</tr>
 	<tr>
 		<td colspan=2 align="center">
-			<input type="submit" value="Log-In" name="btnLogin" value="btnLogin">
+			<input type="button" value="Log-In" name="btnLogin" value="btnLogin">
 		</td>
 	</tr>
 	
